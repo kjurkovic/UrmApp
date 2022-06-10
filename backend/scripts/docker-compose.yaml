@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  postgres-db:
+    image: postgres:latest
+    container_name: glutenno-postgres
+    environment:
+      - TZ=Europe/Zagreb
+      - POSTGRES_DB=glutenno
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./database:/docker-entrypoint-initdb.d:ro"
+      - glutenno-pgdata:/var/lib/postgresql/data
+      
+volumes:
+  glutenno-pgdata:
